@@ -1,0 +1,16 @@
+inception {
+    background-color: black;
+    color: white;
+    font-family: Arial, Tahoma, Verdana, Arial, Helvetica, sans-serif;
+    padding: 8px 15px;
+    display: inline-block;
+    border-radius: 2px;
+    font-size: 11px;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: all .25s;
+}
+
+inception:hover {
+    background-color: lightseagreen;
+}

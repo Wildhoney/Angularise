@@ -15,7 +15,7 @@
     if (typeof $angular === 'undefined') {
 
         // Angular.js must of course have been defined.
-        throwException('Angular.js has not been loaded.');
+        throwException('Angular.js has not been loaded');
 
     }
 
@@ -24,39 +24,37 @@
      * @author Adam Timberlake
      * @link https://github.com/Wildhoney/Angularise
      * @param html {String}
-     * @param [scope=undefined] {Object}
+     * @param [targetNode=undefined] {Object}
      * @return {String}
      */
-    $window.angularise = function angularise(html, scope) {
+    $window.angularise = function angularise(html, targetNode) {
 
+        // Discover the node in which we're using for the scope.
+        var scopeNode = targetNode ? $angular.element(targetNode) : $document.querySelector('*[ng-app]');
+
+        // HTML template once it has been compiled against the desired scope.
         var compiledHtml = '';
 
-        if (!scope) {
+        if (!scopeNode) {
 
-            var ngAppNode = $document.querySelector('*[ng-app]');
+            // Unable to locate node with "ng-app" attribute.
+            throwException('Unable to locate node with "ng-app" attribute');
 
-            if (!ngAppNode) {
+        }
 
-                // Unable to locate node with "ng-app" attribute.
-                throwException('Unable to locate node with "ng-app" attribute.');
+        // Ensure the node we're dealing with is an instance of $angular.element!
+        scopeNode = $angular.element(scopeNode);
 
-            }
+        if (!('scope' in scopeNode)) {
 
-            if (!('scope' in ngAppNode)) {
-
-                // Unable to locate "scope" method on node.
-                throwException('Method "scope" is unavailable on "ng-app" node.');
-
-            }
-
-            // We'll attempt to locate the root scope if a child scope hasn't been specified.
-            scope = ngAppNode.scope();
+            // Unable to locate "scope" method on node.
+            throwException('Method "scope" is unavailable on "ng-app" node');
 
         }
 
         // Process of compiling the HTML.
-        $angular.element($document).injector().invoke(function invoke($compile) {
-            compiledHtml = $compile(html)(scope);
+        scopeNode.injector().invoke(function invoke($compile) {
+            compiledHtml = $compile(html)(scopeNode.scope());
         });
 
         return compiledHtml;
