@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/Wildhoney/Angularise",
   "devDependencies": {
+    "bower": "^1.3.12",
     "express": "^4.10.6",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.3",
