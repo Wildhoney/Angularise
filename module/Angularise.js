@@ -33,8 +33,24 @@
 
         if (!scope) {
 
+            var ngAppNode = $document.querySelector('*[ng-app]');
+
+            if (!ngAppNode) {
+
+                // Unable to locate node with "ng-app" attribute.
+                throwException('Unable to locate node with "ng-app" attribute.');
+
+            }
+
+            if (!('scope' in ngAppNode)) {
+
+                // Unable to locate "scope" method on node.
+                throwException('Method "scope" is unavailable on "ng-app" node.');
+
+            }
+
             // We'll attempt to locate the root scope if a child scope hasn't been specified.
-            scope = $document.querySelector('*[ng-app]').scope();
+            scope = ngAppNode.scope();
 
         }
 
