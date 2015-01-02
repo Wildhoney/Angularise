@@ -4,6 +4,21 @@
     var app = $angular.module('exampleApp', []);
 
     /**
+     * @method InceptionController
+     * @param $scope {Object}
+     * @return {void}
+     */
+    app.controller('InceptionController', function InceptionController($scope) {
+
+        /**
+         * @property index
+         * @type {Number}
+         */
+        $scope.index = 1;
+
+    });
+
+    /**
      * @directive Inception
      * @return {void}
      */
@@ -12,20 +27,29 @@
         return {
 
             /**
-             * @method compile
+             * @property scope
+             * @type {Boolean}
+             */
+            scope: false,
+
+            /**
+             * @method link
+             * @param scope {Object}
              * @param element {Object}
              * @return {void}
              */
-            compile: function compile(element) {
+            link: function link(scope, element) {
 
                 var onComplete = function onComplete(response) {
 
+                    scope.index++;
                     element.after(angularise(response.responseText));
 
                 };
 
                 element.bind('click', function onClick() {
 
+                    // Load the template when the directive has been clicked.
                     $j.ajax('inception.html', { complete: onComplete });
 
                 });
