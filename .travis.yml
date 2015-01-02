@@ -15,6 +15,9 @@ script:
 
 deploy:
   provider: heroku
+  strategy: api
+  skip_cleanup: true
+  all_branches: true
   api_key:
     secure: ZSwHUCvNefJZnCVQCMLZ/Pug48x3CsdQv2MXgdqCQmA83ejfNgiC2qaIHI17hFKwuzhA2kqUKv3OOEIpTLjXUd1Xwpsqj9IThF5Hh4+JOBi0pFvQ1EwXumR7QQZxRxz80taAz2MbBHTtvN81YoM6r+4hKqAVhkLp7eEaB7xOJn0=
   app: angularise
