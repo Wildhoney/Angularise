@@ -1,6 +1,17 @@
 Angularise
 ==========
 
+![Travis](http://img.shields.io/travis/Wildhoney/Angularise.svg?style=flat)
+&nbsp;
+![npm](http://img.shields.io/npm/v/angularise.svg?style=flat)
+&nbsp;
+![License MIT](http://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat)
+
+* **Heroku**: [http://angularise.herokuapp.com/](http://angularise.herokuapp.com/)
+* **Bower:** `bower install angularise`
+
+---
+
 `Angularise` is a simple module for compiling HTML templates outside of the Angular.js runloop &ndash; such as asynchronous AJAX requests &ndash; in the case of `Angularise` you don't even require the scope to compile the HTML.
 
 ## Getting Started
