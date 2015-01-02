@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/Wildhoney/Angularise/issues"
   },
-  "homepage": "https://github.com/Wildhoney/Angularise"
+  "homepage": "https://github.com/Wildhoney/Angularise",
+  "devDependencies": {
+    "express": "^4.10.6"
+  }
 }
