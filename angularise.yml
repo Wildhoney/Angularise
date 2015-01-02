@@ -1,0 +1,9 @@
+components: module/Angularise.js
+
+build:
+  directory: dist
+  copy: example/vendor/angularise
+  development: angularise.js
+  production:
+    minified: angularise.min.js
+    unminified: angularise.js
