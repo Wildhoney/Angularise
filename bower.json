@@ -1,0 +1,25 @@
+{
+  "name": "angularise",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Wildhoney/Angularise",
+  "authors": [
+    "Adam Timberlake <adam.timberlake@gmail.com>"
+  ],
+  "description": "Deferred compilation of Angular.js templates for applications that render HTML from asynchronous processes.",
+  "main": "dist/angularise.min.js",
+  "keywords": [
+    "angularise",
+    "angular.js",
+    "angular",
+    "compile",
+    "interpolate"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
