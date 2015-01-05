@@ -19,7 +19,7 @@
     });
 
     /**
-     * @directive Inception
+     * @directive inception
      * @return {void}
      */
     app.directive('inception', function inceptionDirective() {
@@ -40,10 +40,15 @@
              */
             link: function link(scope, element) {
 
+                /**
+                 * @method onComplete
+                 * @param response {Object}
+                 * @return {void}
+                 */
                 var onComplete = function onComplete(response) {
 
                     scope.index++;
-                    element.after(angularise(response.responseText));
+                    element.after(angularise(response.responseText, element));
 
                 };
 
