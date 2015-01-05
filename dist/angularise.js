@@ -30,14 +30,14 @@
      * @author Adam Timberlake
      * @link https://github.com/Wildhoney/Angularise
      * @param html {String}
-     * @param [targetNode=undefined] {Object}
+     * @param [targetNode="*[ng-app]"] {Object}
      * @return {String}
      */
     $window.angularise = function angularise(html, targetNode) {
 
         // Discover the node in which we're using for the scope.
-        var scopeNode = targetNode ? $angular.element(targetNode)
-                                   : $angular.element($document.querySelector('*[' + NG_APP_ATTRIBUTE + ']'));
+        targetNode    = targetNode || $document.querySelector('*[' + NG_APP_ATTRIBUTE + ']');
+        var scopeNode = $angular.element(targetNode);
 
         // HTML template once it has been compiled against the desired scope.
         var compiledHtml = '';
