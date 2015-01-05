@@ -20,6 +20,12 @@
     }
 
     /**
+     * @constant NG_APP_ATTRIBUTE
+     * @type {String}
+     */
+    var NG_APP_ATTRIBUTE = 'ng-app';
+
+    /**
      * @module angularise
      * @author Adam Timberlake
      * @link https://github.com/Wildhoney/Angularise
@@ -30,25 +36,22 @@
     $window.angularise = function angularise(html, targetNode) {
 
         // Discover the node in which we're using for the scope.
-        var scopeNode = targetNode ? $angular.element(targetNode) : $document.querySelector('*[ng-app]');
+        var scopeNode = targetNode ? $angular.element(targetNode) : $angular.element($document.querySelector('*[' + NG_APP_ATTRIBUTE + ']'));
 
         // HTML template once it has been compiled against the desired scope.
         var compiledHtml = '';
 
-        if (!scopeNode) {
+        if (scopeNode.length === 0) {
 
             // Unable to locate node with "ng-app" attribute.
-            throwException('Unable to locate node with "ng-app" attribute');
+            throwException('Unable to locate node with "' + NG_APP_ATTRIBUTE + '" attribute');
 
         }
-
-        // Ensure the node we're dealing with is an instance of $angular.element!
-        scopeNode = $angular.element(scopeNode);
 
         if (!('scope' in scopeNode)) {
 
             // Unable to locate "scope" method on node.
-            throwException('Method "scope" is unavailable on "ng-app" node');
+            throwException('Method "scope" is unavailable on "' + NG_APP_ATTRIBUTE + '" node');
 
         }
 

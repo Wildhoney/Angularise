@@ -48,7 +48,7 @@
                 var onComplete = function onComplete(response) {
 
                     scope.index++;
-                    element.after(angularise(response.responseText, element));
+                    element.after(angularise(response.responseText));
 
                 };
 
