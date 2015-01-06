@@ -2,3 +2,4 @@
 /node_modules
 /example/vendor/*
 !/example/vendor/.gitkeep
+/npm-debug.log
