@@ -12,13 +12,6 @@
         throw "Angularise: " + message + ".";
     };
 
-    if (typeof $angular === 'undefined') {
-
-        // Angular.js must of course have been defined.
-        throwException('Angular.js has not been loaded');
-
-    }
-
     /**
      * @constant NG_APP_ATTRIBUTE
      * @type {String}
@@ -34,6 +27,13 @@
      * @return {String}
      */
     $window.angularise = function angularise(html, targetNode) {
+
+        if (typeof $angular === 'undefined') {
+
+            // Angular.js must of course have been defined.
+            throwException('Angular.js has not been loaded');
+
+        }
 
         // Discover the node in which we're using for the scope.
         targetNode    = targetNode || $document.querySelector('*[' + NG_APP_ATTRIBUTE + ']');
