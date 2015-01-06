@@ -49,12 +49,16 @@
 
         }
 
-        if (!('scope' in scopeNode)) {
+        $angular.forEach(['scope', 'injector'], function forEach(methodName) {
 
-            // Unable to locate "scope" method on node.
-            throwException('Method "scope" is unavailable on "' + NG_APP_ATTRIBUTE + '" node');
+            if (!(methodName in scopeNode)) {
 
-        }
+                // Ensure the necessary methods exist on the "scopeNode" element.
+                throwException('Method "' + methodName + '" is unavailable on "' + NG_APP_ATTRIBUTE + '" node');
+
+            }
+
+        });
 
         // Process of compiling the HTML.
         scopeNode.injector().invoke(function invoke($compile) {
