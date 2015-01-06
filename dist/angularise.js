@@ -36,36 +36,40 @@
         }
 
         // Discover the node in which we're using for the scope.
-        targetNode    = targetNode || $document.querySelector('*[' + NG_APP_ATTRIBUTE + ']');
-        var scopeNode = $angular.element(targetNode);
+        targetNode      = targetNode || $document.querySelector('*[' + NG_APP_ATTRIBUTE + ']');
+        var rootElement = $angular.element(targetNode);
 
         // HTML template once it has been compiled against the desired scope.
         var compiledHtml = '';
 
-        if (scopeNode.length === 0) {
+        if (rootElement.length === 0) {
 
             // Unable to locate node with "ng-app" attribute.
             throwException('Unable to locate node with "' + NG_APP_ATTRIBUTE + '" attribute');
 
         }
 
-        if (!('scope' in scopeNode)) {
+        $angular.forEach(['scope', 'injector'], function forEach(methodName) {
 
-            // Unable to locate "scope" method on node.
-            throwException('Method "scope" is unavailable on "' + NG_APP_ATTRIBUTE + '" node');
+            if (!(methodName in rootElement)) {
 
-        }
+                // Ensure the necessary methods exist on the "rootElement" element.
+                throwException('Method "' + methodName + '" is unavailable on "' + NG_APP_ATTRIBUTE + '" node');
+
+            }
+
+        });
 
         // Process of compiling the HTML.
-        scopeNode.injector().invoke(function invoke($compile) {
-            compiledHtml = $compile(html)(scopeNode.scope());
+        rootElement.injector().invoke(function invoke($compile) {
+            compiledHtml = $compile(html)(rootElement.scope());
         });
 
         // Determine if it's safe to invoke the $apply method.
         var phase = compiledHtml.scope().$$phase;
 
         if (phase !== '$apply' || phase !== '$digest') {
-            scopeNode.scope().$apply();
+            rootElement.scope().$apply();
         }
 
         return compiledHtml;
