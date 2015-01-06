@@ -65,12 +65,21 @@
             compiledHtml = $compile(html)(rootElement.scope());
         });
 
-        // Determine if it's safe to invoke the $apply method.
-        var phase = compiledHtml.scope().$$phase;
+        /**
+         * Determine if it's safe to invoke the $apply method.
+         *
+         * @method safeApply
+         * @return {void}
+         */
+        (function safeApply() {
 
-        if (phase !== '$apply' || phase !== '$digest') {
-            rootElement.scope().$apply();
-        }
+            var phase = compiledHtml.scope().$$phase;
+
+            if (phase !== '$apply' || phase !== '$digest') {
+                rootElement.scope().$apply();
+            }
+
+        })();
 
         return compiledHtml;
 

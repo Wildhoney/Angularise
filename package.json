@@ -1,6 +1,6 @@
 {
   "name": "angularise",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Deferred compilation of Angular.js templates for applications that render HTML from asynchronous processes.",
   "main": "dist/angularise.min.js",
   "directories": {
